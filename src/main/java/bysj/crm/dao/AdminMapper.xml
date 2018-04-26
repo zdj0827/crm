@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bysj.crm.dao.AdminMapper">
+    <resultMap id="admin" type="bysj.crm.domain.Admin">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="salt" column="salt"/>
+    </resultMap>
+
+    <sql id="allColumns">
+        id,name,password,salt
+    </sql>
+
+    <insert id="addAdmin">
+        INSERT admins(name,password,salt) VALUES (#{admin.name},#{admin.password},#{admin.salt})
+    </insert>
+
+    <update id="updateAdmin">
+        UPDATE admins SET name=#{admin.name},password=#{admin.password},salt=#{admin.salt} WHERE id=#{admin.id}
+    </update>
+
+    <select id="getAdminById" resultMap="admin">
+        SELECT <include refid="allColumns"/> FROM admins WHERE id=#{id}
+    </select>
+
+    <select id="getAdminByName" resultMap="admin">
+        SELECT <include refid="allColumns"/> FROM  admins WHERE name=#{name}
+    </select>
+</mapper>
