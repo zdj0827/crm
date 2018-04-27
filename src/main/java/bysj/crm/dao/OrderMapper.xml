@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bysj.crm.dao.OrderMapper">
+    <resultMap id="order" type="bysj.crm.domain.Order">
+        <id property="id" column="id"/>
+        <result property="customerId"  column="customer_id"/>
+        <result property="title"  column="title"/>
+        <result property="content"  column="content"/>
+        <result property="totals"  column="totals"/>
+        <result property="status"  column="status"/>
+    </resultMap>
+
+    <sql id="allColumns">
+        id,customer_id,title,content,totals,status
+    </sql>
+
+    <insert id="addOrder">
+        INSERT INTO orders (customer_id,title,content,totals,status) VALUES
+        (#{order.customerId},#{order.title},
+        #{order.content},#{order.totals},#{order.status})
+    </insert>
+
+    <update id="updateOrder">
+        UPDATE orders SET customer_id=#{order.customerId},title=#{order.title},
+        content=#{order.content},totals=#{order.totals},status=#{order.status}
+        WHERE id=#{order.id}
+    </update>
+
+    <delete id="deleteOrder">
+        DELETE FROM orders WHERE id=#{id}
+    </delete>
+</mapper>

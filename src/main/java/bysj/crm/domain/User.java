@@ -7,8 +7,8 @@ public class User {
     private String salt;
     private String role;
     private int level;
-    private String dept_name;
-    private int job_number;
+    private String deptName;
+    private int jobNumber;
 
     public int getId() {
         return id;
@@ -58,19 +58,19 @@ public class User {
         this.level = level;
     }
 
-    public String getDept_name() {
-        return dept_name;
+    public String getDeptName() {
+        return deptName;
     }
 
-    public void setDept_name(String dept_name) {
-        this.dept_name = dept_name;
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
     }
 
-    public int getJob_number() {
-        return job_number;
+    public int getJobNumber() {
+        return jobNumber;
     }
 
-    public void setJob_number(int job_number) {
-        this.job_number = job_number;
+    public void setJobNumber(int jobNumber) {
+        this.jobNumber = jobNumber;
     }
 }

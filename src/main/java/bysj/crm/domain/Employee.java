@@ -10,7 +10,6 @@ public class Employee {
     private int qualification; //学历
     private String phone;
     private String address;
-    private Date birthday;
     private String linkedName;
     private String linkedPhone;
     private String linkedAddress;
@@ -73,14 +72,6 @@ public class Employee {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
     }
 
     public String getLinkedName() {

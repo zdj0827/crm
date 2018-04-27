@@ -1,12 +1,9 @@
 package bysj.crm.domain;
 
-import java.util.Date;
-
 public class Customer {
 
     private int id;
     private String name;
-    private Date birthday;
     private String phone;
     private String address;
     private String companyName;
@@ -30,14 +27,6 @@ public class Customer {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
     }
 
     public String getPhone() {

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="bysj.crm.dao.EmployeeMapper">
+    <resultMap id="employee" type="bysj.crm.domain.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="jobNumber" column="job_number"/>
+        <result property="idCardNumber" column="idCard_number"/>
+        <result property="qualification" column="qualification"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <result property="linkedName" column="linked_name"/>
+        <result property="linkedPhone" column="linked_phone"/>
+        <result property="linkedAddress" column="linked_address"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="role" column="role"/>
+        <result property="level" column="level"/>
+        <result property="wages" column="wages"/>
+    </resultMap>
+
+    <sql id="allColumns">
+        id,name,job_number,idCard_number,qualification,phone,address,
+        linked_name,linked_phone,linked_address,dept_name,role,level,wages
+    </sql>
+
+    <insert id="addEmployee">
+        INSERT INTO emlopyees (name,job_number,idCard_number,qualification,phone,address,
+        linked_name,linked_phone,linked_address,dept_name,role,level,wages)
+        VALUES (#{employee.name},#{employee.jobNumber},#{employee.idCardNumber},#{employee.qualification},#{employee.phone},
+        #{employee.address},#{employee.linkedName},#{employee.linkedPhone},#{employee.linkedAddress},#{employee.deptName},#{employee.role},
+        #{employee.level},#{employee.wages}
+        )
+    </insert>
+
+    <update id="updateEmployee">
+        UPDATE employees SET name=#{employee.name},job_number=#{employee.jobNumber},idCard_number=#{employee.idCardNumber},
+        qualification=#{employee.qualification},phone=#{employee.phone},address=#{employee.address},
+        linked_name=#{employee.linkedName},linked_phone=#{employee.linkedPhone},linked_address=#{employee.linkedAddress},
+        dept_name=#{employee.deptName},role=#{employee.role},level=#{employee.level},wages=#{employee.wages} WHERE id=#{employee.id}
+    </update>
+
+    <delete id="deleteEmployee">
+        DELETE FROM  employees WHERE id=#{id}
+    </delete>
+</mapper>
