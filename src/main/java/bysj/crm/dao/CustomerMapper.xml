@@ -12,24 +12,26 @@
         <result property="linkedName" column="linked_name"/>
         <result property="linkedPhone" column="linked_phone"/>
         <result property="linkedAddress" column="linked_address"/>
+        <result property="level" column="level"/>
     </resultMap>
 
     <sql id="allColumns">
         id,name,phone,address,company_name,company_tel,company_address,linked_name,
-        linked_phone,linked_address
+        linked_phone,linked_address,level
     </sql>
 
     <insert id="addCustomer">
         INSERT into customers (name,phone,address,company_name,company_tel,company_address,linked_name,
-        linked_phone,linked_address) VALUES (#{customer.name},#{customer.phone},#{customer.address},
+        linked_phone,linked_address,level) VALUES (#{customer.name},#{customer.phone},#{customer.address},
         #{customer.companyName},#{customer.companyTel},#{customer.companyAddress},
-        #{customer.linkedName},#{customer.linkedPhone},#{customer.linkedAddress})
+        #{customer.linkedName},#{customer.linkedPhone},#{customer.linkedAddress},#{customer.level})
     </insert>
 
     <update id="updateCustomer">
         UPDATE customers SET name=#{customer.name},phone=#{customer.phone},address=#{customer.address},
         company_name=#{customer.companyName},company_tel=#{customer.companyTel},company_address=#{customer.companyAddress},
-        linked_name=#{customer.linkedName},linked_phone=,#{customer.linkedPhone}linked_address=#{customer.linkedAddress}
+        linked_name=#{customer.linkedName},linked_phone=,#{customer.linkedPhone}linked_address=#{customer.linkedAddress},
+        level=#{customer.level}
         WHERE id=#{customer.id}
     </update>
 

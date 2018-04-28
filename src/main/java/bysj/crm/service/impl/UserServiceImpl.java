@@ -24,4 +24,14 @@ public class UserServiceImpl implements UserService{
     public int deleteUser(int id) {
         return userMapper.deleteUser(id);
     }
+
+    @Override
+    public User getByJobNumber(long jobNumber) {
+        return userMapper.getByJobNumber(jobNumber);
+    }
+
+    @Override
+    public boolean isMatch(String password, User userFind) {
+        return userFind.getPassword().equals(password);
+    }
 }

@@ -1,6 +1,7 @@
 package bysj.crm.controller;
 
 import bysj.crm.domain.Admin;
+import bysj.crm.domain.User;
 import bysj.crm.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,17 +65,18 @@ public class AdminController {
     }
     /*管理员登录*/
     @ResponseBody
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public Map<String,Object> login(String name,String password){
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    public Map<String,Object> login(Admin admin, HttpServletRequest request, HttpServletResponse response){
         Map<String,Object> result = new HashMap<>();
-        Admin admin = adminService.getAdminByName(name);
+        Admin adminFind = adminService.getAdminByName(admin.getName());
         if(admin==null){
             result.put("result",false);
             result.put("url","");
             return result;
         }
-        boolean isMatch = adminService.isMatch(password,admin);
+        boolean isMatch = adminService.isMatch(admin.getPassword(),adminFind);
         if(isMatch){
+            request.getSession().setAttribute("user",adminFind);
             result.put("result",true);
             result.put("url","");
         }else{

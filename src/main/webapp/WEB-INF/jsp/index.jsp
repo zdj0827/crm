@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -102,50 +103,52 @@
                         <span class="menu-text"> 控制台 </span>
                     </a>
                 </li>
-
-                <li>
-                    <a class="dropdown-toggle">
-                        <i class="icon-file"></i>
-                        <span class="menu-text"> 管理员管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li data-options="attributes:{'href':'item-list'}">
-                            <a id="adminList">
-                                <i class="icon-double-angle-right"></i>
-                                管理员列表
-                            </a>
-                        </li>
-                        <li data-options="attributes:{'href':'item-add'}">
-                            <a id="addAdmin">
-                                <i class="icon-double-angle-right"></i>
-                                添加管理员
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="dropdown-toggle">
-                        <i class="icon-file"></i>
-                        <span class="menu-text"> 员工管理 </span>
-                        <b class="arrow icon-angle-down"></b>
-                    </a>
-                    <ul class="submenu">
-                        <li data-options="attributes:{'href':'item-list'}">
-                            <a id="employeeList">
-                                <i class="icon-double-angle-right"></i>
-                                员工列表
-                            </a>
-                        </li>
-                        <li data-options="attributes:{'href':'item-add'}">
-                            <a id="addEmployee">
-                                <i class="icon-double-angle-right"></i>
-                                增加员工
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
+                <c:if test="${sessionScope.user.level>1}">
+                    <li>
+                        <a class="dropdown-toggle">
+                            <i class="icon-file"></i>
+                            <span class="menu-text"> 管理员管理 </span>
+                            <b class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li data-options="attributes:{'href':'item-list'}">
+                                <a id="adminList" href="javascript:void(0)">
+                                    <i class="icon-double-angle-right"></i>
+                                    管理员列表
+                                </a>
+                            </li>
+                            <li data-options="attributes:{'href':'item-add'}">
+                                <a id="addAdmin" href="javascript:void(0)">
+                                    <i class="icon-double-angle-right"></i>
+                                    添加管理员
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.user.level>0}">
+                    <li>
+                        <a class="dropdown-toggle">
+                            <i class="icon-file"></i>
+                            <span class="menu-text"> 员工管理 </span>
+                            <b class="arrow icon-angle-down"></b>
+                        </a>
+                        <ul class="submenu">
+                            <li data-options="attributes:{'href':'item-list'}">
+                                <a id="employeeList" href="javascript:void(0)">
+                                    <i class="icon-double-angle-right"></i>
+                                    员工列表
+                                </a>
+                            </li>
+                            <li data-options="attributes:{'href':'item-add'}">
+                                <a id="addEmployee" href="javascript:void(0)">
+                                    <i class="icon-double-angle-right"></i>
+                                    增加员工
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </c:if>
                 <li>
                     <a href="#" class="dropdown-toggle">
                         <i class="icon-file"></i>
@@ -154,13 +157,13 @@
                     </a>
                     <ul class="submenu">
                         <li>
-                            <a id="customerList">
+                            <a id="customerList" href="javascript:void(0)">
                                 <i class="icon-double-angle-right"></i>
                                 客户列表
                             </a>
                         </li>
                         <li>
-                            <a id="addCustomer">
+                            <a id="addCustomer" href="javascript:void(0)">
                                 <i class="icon-double-angle-right"></i>
                                 增加客户
                             </a>
@@ -168,20 +171,20 @@
                     </ul>
                 </li>
                 <li>
-                    <a id="" class="dropdown-toggle">
+                    <a id="" class="dropdown-toggle" >
                         <i class="icon-file"></i>
                         <span class="menu-text"> 潜在客户管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
                         <li>
-                            <a id="potentialCustomerList">
+                            <a id="potentialCustomerList" href="javascript:void(0)">
                                 <i class="icon-double-angle-right"></i>
                                 潜在客户列表
                             </a>
                         </li>
                         <li>
-                            <a id="addPotentialCustomer">
+                            <a id="addPotentialCustomer" href="javascript:void(0)">
                                 <i class="icon-double-angle-right"></i>
                                 增加潜在客户
                             </a>
@@ -189,14 +192,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a id="1" class="dropdown-toggle">
+                    <a id="1" class="dropdown-toggle" href="javascript:void(0)">
                         <i class="icon-file"></i>
                         <span class="menu-text"> 订单管理 </span>
                         <b class="arrow icon-angle-down"></b>
                     </a>
                     <ul class="submenu">
                         <li>
-                            <a id="orderList">
+                            <a id="orderList" href="javascript:void(0)">
                                 <i class="icon-double-angle-right"></i>
                                 订单列表
                             </a>
@@ -236,10 +239,13 @@
 
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="icon-search nav-search-icon"></i>
-								</span>
+                        欢迎：${sessionScope.user.name},&nbsp;
+                        <a id="logout" onclick="logout()">退出</a>&nbsp;
+                        <a id="moreInfo" onclick="getInfo(${sessionScope.user.id},${sessionScope.user.level})">个人资料</a>&nbsp;&nbsp;
+						<%--<span class="input-icon">
+							<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+							<i class="icon-search nav-search-icon"></i>
+						</span>--%>
                     </form>
                 </div><!-- #nav-search -->
             </div>
@@ -425,9 +431,6 @@
             $(this).sparkline('html', {tagValuesAttribute:'data-values', type: 'bar', barColor: barColor , chartRangeMin:$(this).data('min') || 0} );
         });
 
-
-
-
         var placeholder = $('#piechart-placeholder').css({'width':'90%' , 'min-height':'150px'});
         var data = [
             { label: "social networks",  data: 38.7, color: "#68BC31"},
@@ -450,11 +453,9 @@
             return 'left';
         }
 
-
         $('.dialogs,.comments').slimScroll({
             height: '300px'
         });
-
 
         //Android's default browser somehow is confused when tapping on label which will lead to dragging the task
         //so disable dragging when clicking on label
@@ -485,8 +486,31 @@
             else $(this).closest('li').removeClass('selected');
         });
 
-
     })
+
+    /*退出登录*/
+    function logout(){
+        $.ajax({
+            url:"logout",
+            type:"post",
+            success:function (data){
+                if(data.result){
+                    self.location.href="/bysj"
+                }else{
+                    alert("系统故障，请稍后再试");
+                    return;
+                }
+            }
+        })
+    }
+
+    function moreInfo(id,level) {
+        if(level==0){
+            $('#pageload').load('user/getById?id='+id);
+        }else{
+            $('#pageload').load('admin/getById?id='+id);
+        }
+    }
 </script>
 <div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>

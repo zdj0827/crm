@@ -5,6 +5,7 @@ public class Admin {
     private String name;
     private String password;
     private String salt;
+    private int level;
 
     public int getId() {
         return id;
@@ -36,5 +37,13 @@ public class Admin {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

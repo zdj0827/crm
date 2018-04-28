@@ -8,7 +8,7 @@ public class User {
     private String role;
     private int level;
     private String deptName;
-    private int jobNumber;
+    private long jobNumber;
 
     public int getId() {
         return id;
@@ -66,11 +66,11 @@ public class User {
         this.deptName = deptName;
     }
 
-    public int getJobNumber() {
+    public long getJobNumber() {
         return jobNumber;
     }
 
-    public void setJobNumber(int jobNumber) {
+    public void setJobNumber(long jobNumber) {
         this.jobNumber = jobNumber;
     }
 }

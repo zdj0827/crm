@@ -11,4 +11,6 @@ public interface UserMapper {
     int updateUser(@Param("user") User user);
 
     int deleteUser(@Param("id") int id);
+
+    User getByJobNumber(@Param("jobNumber") long jobNumber);
 }

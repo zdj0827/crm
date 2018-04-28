@@ -1,11 +1,10 @@
 package bysj.crm.domain;
 
-import java.util.Date;
 
 public class Employee {
     private int id;
     private String name;
-    private int jobNumber;
+    private long jobNumber;
     private int idCardNumber;
     private int qualification; //学历
     private String phone;
@@ -34,11 +33,11 @@ public class Employee {
         this.name = name;
     }
 
-    public int getJobNumber() {
+    public long getJobNumber() {
         return jobNumber;
     }
 
-    public void setJobNumber(int jobNumber) {
+    public void setJobNumber(long jobNumber) {
         this.jobNumber = jobNumber;
     }
 

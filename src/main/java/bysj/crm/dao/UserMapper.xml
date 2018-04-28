@@ -31,4 +31,8 @@
     <delete id="deleteUser">
         DELETE FROM users WHERE id=#{id}
     </delete>
+
+    <select id="getByJobNumber" resultMap="user">
+        SELECT <include refid="allColumns"/> FROM users WHERE job_number = #{jobNumber}
+    </select>
 </mapper>

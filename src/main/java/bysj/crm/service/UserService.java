@@ -8,4 +8,8 @@ public interface UserService {
     int updateUser(User user);
 
     int deleteUser(int id);
+
+    User getByJobNumber(long jobNumber);
+
+    boolean isMatch(String password, User userFind);
 }

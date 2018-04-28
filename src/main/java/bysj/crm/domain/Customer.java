@@ -12,6 +12,7 @@ public class Customer {
     private String linkedName;
     private String linkedPhone;
     private String linkedAddress;
+    private int level;
 
     public int getId() {
         return id;
@@ -100,7 +101,5 @@ public class Customer {
     public void setLevel(int level) {
         this.level = level;
     }
-
-    private int level;
 
 }
