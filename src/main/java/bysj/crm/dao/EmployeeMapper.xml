@@ -24,7 +24,7 @@
     </sql>
 
     <insert id="addEmployee">
-        INSERT INTO emlopyees (name,job_number,idCard_number,qualification,phone,address,
+        INSERT INTO employees (name,job_number,idCard_number,qualification,phone,address,
         linked_name,linked_phone,linked_address,dept_name,role,level,wages)
         VALUES (#{employee.name},#{employee.jobNumber},#{employee.idCardNumber},#{employee.qualification},#{employee.phone},
         #{employee.address},#{employee.linkedName},#{employee.linkedPhone},#{employee.linkedAddress},#{employee.deptName},#{employee.role},

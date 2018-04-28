@@ -19,7 +19,7 @@
     <insert id="addPotentialCustomer">
         INSERT INTO potential_customers (name,phone,address,company_name,company_tel,company_address)
         VALUES (#{pCustomer.name},#{pCustomer.phone},#{pCustomer.address},
-        #{pCustomer.companyName},#{pCustomer.company_tel},#{pCustomer.company_address})
+        #{pCustomer.companyName},#{pCustomer.companyTel},#{pCustomer.companyAddress})
     </insert>
 
     <update id="updatePotentialCustomer">

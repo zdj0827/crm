@@ -5,7 +5,7 @@ public class Employee {
     private int id;
     private String name;
     private long jobNumber;
-    private int idCardNumber;
+    private long idCardNumber;
     private int qualification; //学历
     private String phone;
     private String address;
@@ -41,11 +41,11 @@ public class Employee {
         this.jobNumber = jobNumber;
     }
 
-    public int getIdCardNumber() {
+    public long getIdCardNumber() {
         return idCardNumber;
     }
 
-    public void setIdCardNumber(int idCardNumber) {
+    public void setIdCardNumber(long idCardNumber) {
         this.idCardNumber = idCardNumber;
     }
 

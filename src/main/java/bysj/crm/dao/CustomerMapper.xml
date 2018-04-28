@@ -38,4 +38,8 @@
     <delete id="deleteCustomer">
         DELETE FROM customers WHERE id=#{id}
     </delete>
+
+    <select id="getCustomerByName" resultMap="customer">
+        SELECT <include refid="allColumns"/> FROM customers WHERE name=#{name}
+    </select>
 </mapper>

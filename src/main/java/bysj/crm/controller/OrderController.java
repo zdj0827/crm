@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+@RequestMapping("order")
 public class OrderController {
     @Autowired
     private OrderService orderService;
@@ -21,9 +22,12 @@ public class OrderController {
     public Map<String,Object> addOrder(Order order){
         Map<String,Object> result = new HashMap<>();
         int i = orderService.addOrder(order);
-        if(i!=0){
+        if(i==1){
             result.put("result",true);
             result.put("url","");
+        }else if(i==-1){
+            result.put("result",false);
+            result.put("code",-1);
         }else {
             result.put("result",false);
             result.put("url","");

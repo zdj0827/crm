@@ -24,4 +24,9 @@ public class CustomerServiceImpl implements CustomerService{
     public int deleteCustomer(int id) {
         return deleteCustomer(id);
     }
+
+    @Override
+    public Customer getCustomerByName(String name) {
+        return customerMapper.getCustomerByName(name);
+    }
 }

@@ -11,4 +11,6 @@ public interface CustomerMapper {
     int updateCustomer(@Param("customer") Customer customer);
 
     int deleteCustomer(@Param("id") int id);
+
+    Customer getCustomerByName(@Param("name") String name);
 }

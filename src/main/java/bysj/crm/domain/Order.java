@@ -2,6 +2,7 @@ package bysj.crm.domain;
 
 public class Order {
     private int id;
+    private String customerName;
     private int customerId;
     private String title;
     private String content;
@@ -54,5 +55,13 @@ public class Order {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }

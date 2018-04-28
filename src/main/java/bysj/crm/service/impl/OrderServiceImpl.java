@@ -1,7 +1,9 @@
 package bysj.crm.service.impl;
 
 import bysj.crm.dao.OrderMapper;
+import bysj.crm.domain.Customer;
 import bysj.crm.domain.Order;
+import bysj.crm.service.CustomerService;
 import bysj.crm.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +12,15 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl implements OrderService{
     @Autowired
     private OrderMapper orderMapper;
-
+    @Autowired
+    private CustomerService customerService;
     @Override
     public int addOrder(Order order) {
+        Customer customer = customerService.getCustomerByName(order.getCustomerName());
+        if(customer==null){
+            return -1;
+        }
+        order.setCustomerId(customer.getId());
         return orderMapper.addOrder(order);
     }
 
