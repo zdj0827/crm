@@ -3,6 +3,8 @@ package bysj.crm.controller;
 import bysj.crm.domain.Admin;
 import bysj.crm.domain.User;
 import bysj.crm.service.AdminService;
+import bysj.crm.util.Page;
+import bysj.crm.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -86,4 +88,10 @@ public class AdminController {
         return result;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "allAdmins",method = RequestMethod.POST)
+    public Result<Admin> getAllAdmins(Page page,Admin admin){
+        Result<Admin> result = adminService.getAllAdmins(page,admin);
+        return result;
+    }
 }

@@ -5,7 +5,7 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="jobNumber" column="job_number"/>
-        <result property="idCardNumber" column="idCard_number"/>
+        <result property="idCardNumber" column="idcard_number"/>
         <result property="qualification" column="qualification"/>
         <result property="phone" column="phone"/>
         <result property="address" column="address"/>
@@ -42,4 +42,23 @@
     <delete id="deleteEmployee">
         DELETE FROM  employees WHERE id=#{id}
     </delete>
+
+    <select id="getEmployeesCount" resultType="java.lang.Long">
+        SELECT count(id) FROM employees
+    </select>
+
+    <select id="getEmployeePage" resultMap="employee">
+        SELECT <include refid="allColumns"/> FROM employees
+        <if test="employee !=null and employee.name!=null and employee.name != ''">
+            <where>
+                name LIKE #{employee.name}
+            </where>
+        </if>
+        <if test="employee !=null and employee.jobNumber!=null and employee.jobNumber !=0">
+            <where>
+                job_number = #{employee.jobNumber}
+            </where>
+        </if>
+        limit #{page.offset},#{page.pageSize}
+    </select>
 </mapper>

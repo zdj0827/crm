@@ -60,4 +60,29 @@ public class PageController {
         result.put("result",true);
         return result;
     }
+
+    @RequestMapping(value = "adminList",method = RequestMethod.GET)
+    public String toAdminList(){
+        return "adminList";
+    }
+
+    @RequestMapping(value = "employeeList",method = RequestMethod.GET)
+    public String toEmployeeList(){
+        return "employeeList";
+    }
+
+    @RequestMapping(value = "customerList",method = RequestMethod.GET)
+    public String toCustomerList(){
+        return "customerList";
+    }
+
+    @RequestMapping(value = "potentialCustomerList",method = RequestMethod.GET)
+    public String toPotentialCustomerList(){
+        return "potentialList";
+    }
+
+    @RequestMapping(value = "orderList",method = RequestMethod.GET)
+    public String toOrderList(){
+        return "orderList";
+    }
 }

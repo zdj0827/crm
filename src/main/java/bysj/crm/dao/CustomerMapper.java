@@ -1,8 +1,11 @@
 package bysj.crm.dao;
 
 import bysj.crm.domain.Customer;
+import bysj.crm.util.Page;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface CustomerMapper {
@@ -13,4 +16,8 @@ public interface CustomerMapper {
     int deleteCustomer(@Param("id") int id);
 
     Customer getCustomerByName(@Param("name") String name);
+
+    long getCustomerCount();
+
+    List<Customer> getCustomerPage(@Param("page") Page page, @Param("customer") Customer customer);
 }

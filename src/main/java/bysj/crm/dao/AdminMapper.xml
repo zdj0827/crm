@@ -28,4 +28,16 @@
     <select id="getAdminByName" resultMap="admin">
         SELECT <include refid="allColumns"/> FROM  admins WHERE name=#{name}
     </select>
+
+    <select id="getAdminCount" resultType="java.lang.Long">
+        SELECT count(id) FROM admins
+    </select>
+
+    <select id="getAdminPage" resultMap="admin">
+        select <include refid="allColumns"/> from admins
+        <if test="admin != null and admin.name != null and admin.name !=''">
+            WHERE name LIKE #{admin.name}
+        </if>
+        limit #{page.offset},#{page.pageSize}
+    </select>
 </mapper>

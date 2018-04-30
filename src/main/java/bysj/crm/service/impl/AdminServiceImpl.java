@@ -3,8 +3,12 @@ package bysj.crm.service.impl;
 import bysj.crm.dao.AdminMapper;
 import bysj.crm.domain.Admin;
 import bysj.crm.service.AdminService;
+import bysj.crm.util.Page;
+import bysj.crm.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -37,5 +41,19 @@ public class AdminServiceImpl implements AdminService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Result<Admin> getAllAdmins(Page page, Admin admin) {
+        Result<Admin> result = new Result<>();
+        try{
+            long count = adminMapper.getAdminCount();
+            result.setTotal(count);
+            List<Admin> admins = adminMapper.getAdminPage(page,admin);
+            result.setRows(admins);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

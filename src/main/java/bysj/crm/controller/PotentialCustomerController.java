@@ -2,6 +2,8 @@ package bysj.crm.controller;
 
 import bysj.crm.domain.PotentialCustomer;
 import bysj.crm.service.PotentialCustomerService;
+import bysj.crm.util.Page;
+import bysj.crm.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +61,13 @@ public class PotentialCustomerController {
             result.put("result",false);
             result.put("url","");
         }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "allPotentialCustomers",method = RequestMethod.POST)
+    public Result<PotentialCustomer> getAllPotentialCustomers(Page page,PotentialCustomer potentialCustomer){
+        Result<PotentialCustomer> result = potentialCustomerService.getAllPotentialCustomers(page,potentialCustomer);
         return result;
     }
 }

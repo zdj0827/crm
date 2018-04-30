@@ -4,6 +4,7 @@
     <resultMap id="order" type="bysj.crm.domain.Order">
         <id property="id" column="id"/>
         <result property="customerId"  column="customer_id"/>
+        <result property="customerName" column="customer_name"/>
         <result property="title"  column="title"/>
         <result property="content"  column="content"/>
         <result property="totals"  column="totals"/>
@@ -11,13 +12,13 @@
     </resultMap>
 
     <sql id="allColumns">
-        id,customer_id,title,content,totals,status
+        id,customer_id,customer_name,title,content,totals,status
     </sql>
 
     <insert id="addOrder">
-        INSERT INTO orders (customer_id,title,content,totals,status) VALUES
+        INSERT INTO orders (customer_id,title,content,totals,status,customer_name) VALUES
         (#{order.customerId},#{order.title},
-        #{order.content},#{order.totals},#{order.status})
+        #{order.content},#{order.totals},#{order.status},#{order.customerName})
     </insert>
 
     <update id="updateOrder">
@@ -29,4 +30,18 @@
     <delete id="deleteOrder">
         DELETE FROM orders WHERE id=#{id}
     </delete>
+
+    <select id="getOrderCount" resultType="java.lang.Long">
+        SELECT count(id) FROM orders
+    </select>
+
+    <select id="getOrderPage" resultMap="order">
+        SELECT <include refid="allColumns"/> FROM orders
+        <if test="order != null and order.customerName != null and order.customerName !=''">
+            <where>
+                customer_name = #{order.customerName}
+            </where>
+        </if>
+        limit #{page.offset},#{page.pageSize}
+    </select>
 </mapper>

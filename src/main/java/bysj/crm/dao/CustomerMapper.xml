@@ -42,4 +42,23 @@
     <select id="getCustomerByName" resultMap="customer">
         SELECT <include refid="allColumns"/> FROM customers WHERE name=#{name}
     </select>
+
+    <select id="getCustomerCount" resultType="java.lang.Long">
+        SELECT count(id) FROM customers
+    </select>
+
+    <select id="getCustomerPage" resultMap="customer">
+        SELECT <include refid="allColumns"/> FROM customers
+        <if test="customer != null and customer.name !=null and customer.name != ''">
+            <where>
+                name LIKE #{customer.name}
+            </where>
+        </if>
+        <if test="customer != null and customer.phone !=null and customer.phone != ''">
+            <where>
+                phone =  #{customer.phone}
+            </where>
+        </if>
+        limit #{page.offset},#{page.pageSize}
+    </select>
 </mapper>

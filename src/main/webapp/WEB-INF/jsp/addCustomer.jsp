@@ -75,14 +75,14 @@
                     <nobr><span style="font-size: 18px;color:red" id="error7" class="error"></span></nobr>
                 </div>
                 <div style="width: 45%;float: left;text-align: right;margin-top: 40px">
-                    <h4 style="border-right: 20px">联系人名称：</h4>
+                    <h4 style="border-right: 20px">联系人电话：</h4>
                 </div>
                 <div style="width: 55%;float: left;text-align: left;margin-top: 40px">
                     <input type="text" id="linkedPhone" placeholder="请输入联系人电话" style="height:39px;font-size: 18px;"size="20"/>
                     <nobr><span style="font-size: 18px;color:red" id="error8" class="error"></span></nobr>
                 </div>
                 <div style="width: 45%;float: left;text-align: right;margin-top: 40px">
-                    <h4 style="border-right: 20px">联系人名称：</h4>
+                    <h4 style="border-right: 20px">联系人地址：</h4>
                 </div>
                 <div style="width: 55%;float: left;text-align: left;margin-top: 40px">
                     <input type="text" id="linkedAddress" placeholder="请输入联系人地址" style="height:39px;font-size: 18px;"size="20"/>

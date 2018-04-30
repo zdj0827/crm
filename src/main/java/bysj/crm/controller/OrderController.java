@@ -2,6 +2,8 @@ package bysj.crm.controller;
 
 import bysj.crm.domain.Order;
 import bysj.crm.service.OrderService;
+import bysj.crm.util.Page;
+import bysj.crm.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,6 +64,13 @@ public class OrderController {
             result.put("result",false);
             result.put("url","");
         }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "allOrders",method = RequestMethod.POST)
+    public Result<Order> getAllOrders(Page page,Order order){
+        Result<Order> result = orderService.getAllOrders(page,order);
         return result;
     }
 }

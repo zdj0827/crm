@@ -3,8 +3,12 @@ package bysj.crm.service.impl;
 import bysj.crm.dao.PotentialCustomerMapper;
 import bysj.crm.domain.PotentialCustomer;
 import bysj.crm.service.PotentialCustomerService;
+import bysj.crm.util.Page;
+import bysj.crm.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class PotentialCustomerServiceImpl implements PotentialCustomerService{
@@ -23,5 +27,19 @@ public class PotentialCustomerServiceImpl implements PotentialCustomerService{
     @Override
     public int deletePotentialCustomer(int id) {
         return potentialCustomerMapper.deletePotentialCustomer(id);
+    }
+
+    @Override
+    public Result<PotentialCustomer> getAllPotentialCustomers(Page page, PotentialCustomer potentialCustomer) {
+        Result<PotentialCustomer> result = new Result<>();
+        try{
+            long count = potentialCustomerMapper.getPotentialCustomerCount();
+            result.setTotal(count);
+            List<PotentialCustomer> potentialCustomers = potentialCustomerMapper.getPotentialCustomerPage(page,potentialCustomer);
+            result.setRows(potentialCustomers);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }

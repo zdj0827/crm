@@ -4,8 +4,8 @@ package bysj.crm.domain;
 public class Employee {
     private int id;
     private String name;
-    private long jobNumber;
-    private long idCardNumber;
+    private Long jobNumber;
+    private Long idCardNumber;
     private int qualification; //学历
     private String phone;
     private String address;
@@ -33,19 +33,19 @@ public class Employee {
         this.name = name;
     }
 
-    public long getJobNumber() {
+    public Long getJobNumber() {
         return jobNumber;
     }
 
-    public void setJobNumber(long jobNumber) {
+    public void setJobNumber(Long jobNumber) {
         this.jobNumber = jobNumber;
     }
 
-    public long getIdCardNumber() {
+    public Long getIdCardNumber() {
         return idCardNumber;
     }
 
-    public void setIdCardNumber(long idCardNumber) {
+    public void setIdCardNumber(Long idCardNumber) {
         this.idCardNumber = idCardNumber;
     }
 

@@ -12,7 +12,7 @@
         <result property="level" column="level"/>
     </resultMap>
 
-    <sql id="allColumn">
+    <sql id="allColumns">
         id,name,phone,address,company_name,company_tel,company_address
     </sql>
 
@@ -31,4 +31,23 @@
     <delete id="deletePotentialCustomer">
         DELETE FROM potential_customers WHERE id=#{id}
     </delete>
+
+    <select id="getPotentialCustomerCount" resultType="java.lang.Long">
+        select count(id) FROM potential_customers;
+    </select>
+
+    <select id="getPotentialCustomerPage" resultMap="potentialCustomer">
+        select <include refid="allColumns"/> FROM potential_customers
+        <if test="pCustomer !=null and pCustomer.name != null and pCustomer.name !=''">
+            <where>
+                name LIKE #{pCustomer.name}
+            </where>
+        </if>
+        <if test="pCustomer !=null and pCustomer.phone != null and pCustomer.phone !=''">
+            <where>
+                phone = #{pCustomer.phone}
+            </where>
+        </if>
+        limit #{page.offset},#{page.pageSize}
+    </select>
 </mapper>

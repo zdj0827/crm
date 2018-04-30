@@ -5,9 +5,15 @@ import bysj.crm.dao.UserMapper;
 import bysj.crm.domain.Employee;
 import bysj.crm.domain.User;
 import bysj.crm.service.EmployeeService;
+import bysj.crm.util.Page;
 import bysj.crm.util.RandomUtil;
+import bysj.crm.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
@@ -18,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     private UserMapper userMapper;
 
     @Override
-    public int addEmployee(Employee employee){
+    public Map<String,Object> addEmployee(Employee employee){
         int result = 0;
         long jobNumber = RandomUtil.createJobNumber();
         User user = userMapper.getByJobNumber(jobNumber);
@@ -46,7 +52,12 @@ public class EmployeeServiceImpl implements EmployeeService{
             result = 0;
             e.printStackTrace();
         }
-        return result;
+        Map<String ,Object> map = new HashMap<>();
+        map.put("result",result);
+        if(result==1){
+            map.put("jobNumber",jobNumber);
+        }
+        return map;
     }
 
     @Override
@@ -57,5 +68,19 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public int deleteEmployee(int id){
         return employeeMapper.deleteEmployee(id);
+    }
+
+    @Override
+    public Result<Employee> getAllEmployees(Page page, Employee employee) {
+        Result<Employee> result = new Result<>();
+        try{
+            long count = employeeMapper.getEmployeesCount();
+            result.setTotal(count);
+            List<Employee> employees = employeeMapper.getEmployeePage(page,employee);
+            result.setRows(employees);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }
