@@ -38,7 +38,7 @@ public class CustomerServiceImpl implements CustomerService{
     public Result<Customer> getAllCustomers(Page page, Customer customer) {
         Result<Customer> result = new Result<>();
         try{
-            long count = customerMapper.getCustomerCount();
+            long count = customerMapper.getCustomerCount(customer);
             result.setTotal(count);
             List<Customer> customers = customerMapper.getCustomerPage(page,customer);
             result.setRows(customers);
@@ -46,5 +46,10 @@ public class CustomerServiceImpl implements CustomerService{
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public Customer getCustomerBId(long id) {
+        return customerMapper.getCustomerById(id);
     }
 }

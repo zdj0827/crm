@@ -17,7 +17,9 @@ public interface CustomerMapper {
 
     Customer getCustomerByName(@Param("name") String name);
 
-    long getCustomerCount();
+    long getCustomerCount(@Param("customer") Customer customer);
 
     List<Customer> getCustomerPage(@Param("page") Page page, @Param("customer") Customer customer);
+
+    Customer getCustomerById(@Param(("id")) long id);
 }

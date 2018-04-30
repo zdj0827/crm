@@ -45,13 +45,23 @@
 
     <select id="getEmployeesCount" resultType="java.lang.Long">
         SELECT count(id) FROM employees
+        <if test="employee !=null and employee.name!=null and employee.name != ''">
+            <where>
+                name LIKE concat('%','${employee.name}','%')
+            </where>
+        </if>
+        <if test="employee !=null and employee.jobNumber!=null and employee.jobNumber !=0">
+            <where>
+                job_number = #{employee.jobNumber}
+            </where>
+        </if>
     </select>
 
     <select id="getEmployeePage" resultMap="employee">
         SELECT <include refid="allColumns"/> FROM employees
         <if test="employee !=null and employee.name!=null and employee.name != ''">
             <where>
-                name LIKE #{employee.name}
+                name LIKE concat('%','${employee.name}','%')
             </where>
         </if>
         <if test="employee !=null and employee.jobNumber!=null and employee.jobNumber !=0">
@@ -60,5 +70,9 @@
             </where>
         </if>
         limit #{page.offset},#{page.pageSize}
+    </select>
+
+    <select id="getEmployeeById" resultMap="employee">
+        SELECT <include refid="allColumns"/> FROM employees WHERE id=#{id}
     </select>
 </mapper>

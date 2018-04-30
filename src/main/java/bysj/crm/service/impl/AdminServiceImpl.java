@@ -47,7 +47,7 @@ public class AdminServiceImpl implements AdminService {
     public Result<Admin> getAllAdmins(Page page, Admin admin) {
         Result<Admin> result = new Result<>();
         try{
-            long count = adminMapper.getAdminCount();
+            long count = adminMapper.getAdminCount(admin);
             result.setTotal(count);
             List<Admin> admins = adminMapper.getAdminPage(page,admin);
             result.setRows(admins);

@@ -12,4 +12,6 @@ public interface PotentialCustomerService {
     int deletePotentialCustomer(int id);
 
     Result<PotentialCustomer> getAllPotentialCustomers(Page page, PotentialCustomer potentialCustomer);
+
+    PotentialCustomer getPotentialCustomerById(long id);
 }

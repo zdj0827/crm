@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>添加订单</title>
+    <title>修改订单信息</title>
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.css">
     <script src="js/jquery-3.1.1.js/"></script>
@@ -19,7 +19,7 @@
 <body>
 <div class="panel panel-primary" id="panel1">
     <div class="panel-heading" style="height: 75px">
-        <h1 class="panel-title" style="color: white"><b>添加订单</b></h1>
+        <h1 class="panel-title" style="color: white"><b>修改订单信息</b></h1>
     </div>
     <div class="panel-body">
         <div>
@@ -27,8 +27,10 @@
                 <div style="width: 45%;float: left;text-align: right;">
                     <h4 style="border-right: 20px">客户名：</h4></div>
                 <div style="width: 55%;float: left;text-align: left;">
-                    <input type="text" id="customerName" placeholder="请输入客户名" style="height:39px;font-size: 18px;" size="20"/>
-                    <input type="hidden" id="customerId"/>
+                    <input type="hidden" id="id" value="${sessionScope.order.id}"/>
+                    <input type="text" id="customerName" placeholder="请输入客户名"
+                           value="${sessionScope.order.customerName}" style="height:39px;font-size: 18px;" size="20"/>
+                    <input type="hidden" id="customerId" value="${sessionScope.order.customerId}"/>
                     <nobr><span style="font-size: 18px;color:red" id="error1"></span></nobr>
                 </div>
             </div>
@@ -37,21 +39,24 @@
                     <h4 style="border-right: 20px">订单名：</h4>
                 </div>
                 <div style="width: 55%;float: left;text-align: left;margin-top: 40px">
-                    <input type="text" id="title" placeholder="请输入订单名" style="height:39px;font-size: 18px;"size="20"/>
+                    <input type="text" id="title" placeholder="请输入订单名"
+                           value="${sessionScope.order.title}"style="height:39px;font-size: 18px;"size="20"/>
                     <nobr><span style="font-size: 18px;color:red" id="error2"></span></nobr>
                 </div>
                 <div style="width: 45%;float: left;text-align: right;margin-top: 40px">
                     <h4 style="border-right: 20px">订单内容：</h4>
                 </div>
                 <div style="width: 55%;float: left;text-align: left;margin-top: 40px">
-                    <input type="text" id="content" placeholder="请输入订单内容" style="height:39px;font-size: 18px;"size="20"/>
+                    <input type="text" id="content" placeholder="请输入订单内容"
+                           value="${sessionScope.order.content}"style="height:39px;font-size: 18px;"size="20"/>
                     <nobr><span style="font-size: 18px;color:red" id="error3"></span></nobr>
                 </div>
                 <div style="width: 45%;float: left;text-align: right;margin-top: 40px">
                     <h4 style="border-right: 20px">订单价格：</h4>
                 </div>
                 <div style="width: 55%;float: left;text-align: left;margin-top: 40px">
-                    <input type="text" id="totals" placeholder="请输入订单总价" style="height:39px;font-size: 18px;"size="20"/>
+                    <input type="text" id="totals" placeholder="请输入订单总价"
+                           value="${sessionScope.order.totals}"style="height:39px;font-size: 18px;"size="20"/>
                     <nobr><span style="font-size: 18px;color:red" id="error4"></span></nobr>
                 </div>
                 <div style="width: 45%;float: left;text-align: right;margin-top: 40px">
@@ -68,7 +73,7 @@
                 </div>
             </div>
             <div style="width:100%;text-align: center;float: left;margin-top: 40px">
-                <button id="loginBtn1" style="width: 70px;height: 40px" onclick="add()"><h5>添加</h5></button>
+                <button id="loginBtn1" style="width: 70px;height: 40px" onclick="add()"><h5>保存</h5></button>
                 &nbsp;&nbsp;&nbsp;
                 <button id="loginBtn3" style="width: 70px;height: 40px" onclick="notDo()"><h5>取消</h5></button>
             </div>
@@ -83,6 +88,7 @@
         $('#error3').html("");
         $('#error4').html("");
         $('#error5').html("");
+        var id = $('#id').val();
         var customerName = $('#customerName').val();
         var title = $('#title').val();
         var content = $('#content').val();
@@ -109,22 +115,22 @@
             return;
         }
         $.ajax({
-            url:"order/add",
-            data:{"customerName":customerName,"title":title,"content":content,
+            url:"order/update",
+            data:{"id":id,"customerName":customerName,"title":title,"content":content,
                 "totals":totals,"status":status
             },
             type:"post",
             dataType:"json",
             success:function(data){
                 if(data.result){
-                    alert("添加订单成功");
-                    self.location.href = "/bysj";
+                    alert("修改订单成功");
+                    $("#pageload").load("orderList");
                 }else{
                     if(data.code==-1){
                         alert("客户不存在");
                         return;
                     }
-                    alert("添加订单失败");
+                    alert("修改订单失败");
                     return;
                 }
             }
@@ -132,16 +138,11 @@
     }
 
     function notDo(){
-        $('#error1').html("");
-        $('#error2').html("");
-        $('#error3').html("");
-        $('#error4').html("");
-        $('#error5').html("");
-        var customerName = $('#customerName').val();
-        var title = $('#title').val();
-        var content = $('#content').val();
-        var totals = $('#totals').val();
-        var status = $('#status').val(0);
+        $("#pageload").load("orderList");
     }
+
+    $(function () {
+        $("#status").val('${sessionScope.order.status}');
+    })
 </script>
 </html>

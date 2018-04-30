@@ -33,15 +33,24 @@
 
     <select id="getOrderCount" resultType="java.lang.Long">
         SELECT count(id) FROM orders
+        <if test="order != null and order.customerName != null and order.customerName !=''">
+            <where>
+                customer_name like concat('%','${order.customerName}','%')
+            </where>
+        </if>
     </select>
 
     <select id="getOrderPage" resultMap="order">
         SELECT <include refid="allColumns"/> FROM orders
         <if test="order != null and order.customerName != null and order.customerName !=''">
             <where>
-                customer_name = #{order.customerName}
+                customer_name like concat('%','${order.customerName}','%')
             </where>
         </if>
         limit #{page.offset},#{page.pageSize}
+    </select>
+
+    <select id="getOrderById" resultMap="order">
+        SELECT <include refid="allColumns"/> FROM orders WHERE id=#{id}
     </select>
 </mapper>

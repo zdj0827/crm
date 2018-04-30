@@ -74,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Result<Employee> getAllEmployees(Page page, Employee employee) {
         Result<Employee> result = new Result<>();
         try{
-            long count = employeeMapper.getEmployeesCount();
+            long count = employeeMapper.getEmployeesCount(employee);
             result.setTotal(count);
             List<Employee> employees = employeeMapper.getEmployeePage(page,employee);
             result.setRows(employees);
@@ -82,5 +82,10 @@ public class EmployeeServiceImpl implements EmployeeService{
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public Employee getEmployeeById(long id) {
+        return employeeMapper.getEmployeeById(id);
     }
 }

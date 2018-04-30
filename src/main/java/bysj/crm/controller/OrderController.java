@@ -42,9 +42,12 @@ public class OrderController {
     public Map<String,Object> updateOrder(Order order){
         Map<String,Object> result = new HashMap<>();
         int i = orderService.updateOrder(order);
-        if(i!=0){
+        if(i==1){
             result.put("result",true);
             result.put("url","");
+        }else if(i==-1){
+            result.put("result",false);
+            result.put("code",-1);
         }else {
             result.put("result",false);
             result.put("url","");

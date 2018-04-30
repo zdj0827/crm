@@ -48,7 +48,16 @@
     }
     //修改
     function editMemberInfoShow() {
-        $("#customerListDg").load('updateCustomerPage');
+        var rows = $("#customerListDg").bootstrapTable('getSelections');
+        if(rows.length==0){
+            alert("请选择要修改的客户！");
+            return;
+        }
+        if(rows.length>1){
+            alert("无法同时修改多个客户！");
+            return;
+        }
+        $("#pageload").load('updateCustomerPage/'+rows[0].id);
         $('#toolbar').hide();
     }
     //批量删除
@@ -67,7 +76,7 @@
                 ids.push(rows[i].cusId)
             }
             $.ajax({
-                url: "customer/batch",
+                url: "customer/delete",
                 type: "post",
                 data: {
                     ids: ids

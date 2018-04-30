@@ -33,7 +33,7 @@ public class PotentialCustomerServiceImpl implements PotentialCustomerService{
     public Result<PotentialCustomer> getAllPotentialCustomers(Page page, PotentialCustomer potentialCustomer) {
         Result<PotentialCustomer> result = new Result<>();
         try{
-            long count = potentialCustomerMapper.getPotentialCustomerCount();
+            long count = potentialCustomerMapper.getPotentialCustomerCount(potentialCustomer);
             result.setTotal(count);
             List<PotentialCustomer> potentialCustomers = potentialCustomerMapper.getPotentialCustomerPage(page,potentialCustomer);
             result.setRows(potentialCustomers);
@@ -41,5 +41,10 @@ public class PotentialCustomerServiceImpl implements PotentialCustomerService{
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public PotentialCustomer getPotentialCustomerById(long id) {
+        return potentialCustomerMapper.getPotentialCustomerById(id);
     }
 }

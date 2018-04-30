@@ -14,4 +14,6 @@ public interface CustomerService {
     Customer getCustomerByName(String name);
 
     Result<Customer> getAllCustomers(Page page, Customer customer);
+
+    Customer getCustomerBId(long id);
 }

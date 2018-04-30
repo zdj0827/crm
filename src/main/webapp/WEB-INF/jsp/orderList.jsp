@@ -41,12 +41,21 @@
 <script>
     //新增
     function addVideoShow() {
-        $("#customerListDg").load('addOrderPage');
+        $("#pageload").load('addOrderPage');
         $('#toolbar').hide();
     }
     //修改
     function editMemberInfoShow() {
-        $("#customerListDg").load('updateOrderPage');
+        var rows = $("#customerListDg").bootstrapTable('getSelections');
+        if(rows.length==0){
+            alert("请选择要修改的订单！");
+            return;
+        }
+        if(rows.length>1){
+            alert("无法同时修改多个订单！");
+            return;
+        }
+        $("#pageload").load('updateOrderPage/'+rows[0].id);
         $('#toolbar').hide();
     }
     //批量删除

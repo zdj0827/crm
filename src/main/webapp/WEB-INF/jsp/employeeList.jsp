@@ -16,7 +16,7 @@
         <div class="panel-body search_box" >
             员工名<input type="text" id="name" name="name" >
             工号 <input type="text"  id="jobNumber" name="jobNumber" >
-            <input type="button"  value="搜索" onclick="serachEmployee()"/>
+            <input type="button"  value="搜索" onclick="serachCus()"/>
         </div>
 
     </form>
@@ -43,12 +43,21 @@
 <script>
     //新增
     function addVideoShow() {
-        $("#customerListDg").load('addEmployeePage');
+        $("#pageload").load('addEmployeePage');
         $('#toolbar').hide();
     }
     //修改
     function editMemberInfoShow() {
-        $("#customerListDg").load('updateEmployeePage');
+        var rows = $("#customerListDg").bootstrapTable('getSelections');
+        if(rows.length==0){
+            alert("请选择要修改的员工！");
+            return;
+        }
+        if(rows.length>1){
+            alert("无法同时修改多个员工！");
+            return;
+        }
+        $("#pageload").load('updateEmployeePage/'+rows[0].id);
         $('#toolbar').hide();
     }
     //批量删除

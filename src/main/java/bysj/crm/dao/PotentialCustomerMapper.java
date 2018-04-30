@@ -15,7 +15,9 @@ public interface PotentialCustomerMapper {
 
     int deletePotentialCustomer(@Param("id")int id);
 
-    long getPotentialCustomerCount();
+    long getPotentialCustomerCount(@Param("pCustomer") PotentialCustomer potentialCustomer);
 
     List<PotentialCustomer> getPotentialCustomerPage(@Param("page") Page page, @Param("pCustomer") PotentialCustomer potentialCustomer);
+
+    PotentialCustomer getPotentialCustomerById(@Param("id") long id);
 }

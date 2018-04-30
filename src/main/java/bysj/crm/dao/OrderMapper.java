@@ -15,7 +15,9 @@ public interface OrderMapper {
 
     int deleteOrder(@Param("id")int id);
 
-    long getOrderCount();
+    long getOrderCount(@Param("order") Order order);
 
     List<Order> getOrderPage(@Param("page") Page page, @Param("order") Order order);
+
+    Order getOrderById(@Param("id") long id);
 }

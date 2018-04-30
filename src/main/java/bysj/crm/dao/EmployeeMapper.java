@@ -15,7 +15,9 @@ public interface EmployeeMapper {
 
     int deleteEmployee(@Param("id")int id);
 
-    long getEmployeesCount();
+    long getEmployeesCount(@Param("employee") Employee employee);
 
     List<Employee> getEmployeePage(@Param("page") Page page, @Param("employee") Employee employee);
+
+    Employee getEmployeeById(@Param("id")long id);
 }

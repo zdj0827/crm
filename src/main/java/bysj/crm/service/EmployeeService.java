@@ -15,4 +15,6 @@ public interface EmployeeService {
     int deleteEmployee(int id);
 
     Result<Employee> getAllEmployees(Page page, Employee employee);
+
+    Employee getEmployeeById(long id);
 }

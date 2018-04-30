@@ -15,7 +15,7 @@
     <form  id="search_cus">
         <div class="panel-body search_box" >
             用户名<input type="text" id="name" name="name" >
-            <input type="button"  value="搜索" onclick="serachAdmin()"/>
+            <input type="button"  value="搜索" onclick="serachCus()"/>
         </div>
     </form>
 
@@ -41,12 +41,25 @@
 <script>
     //新增
     function addVideoShow() {
-        $("#customerListDg").load('addCustomerPage');
+        $("#pageload").load('addCustomerPage');
         $('#toolbar').hide();
     }
     //修改
     function editMemberInfoShow() {
-        $("#customerListDg").load('uodateCustomerPage');
+        var rows = $("#customerListDg").bootstrapTable('getSelections');
+        if(rows.length==0){
+            alert("请选择要修改的管理员！");
+            return;
+        }
+        if(rows.length>1){
+            alert("无法同时修改多个管理员！");
+            return;
+        }
+        if(rows[0].level==2){
+            alert("此为超级管理员，无法修改信息");
+            return;
+        }
+        $("#pageload").load('updateAdminPage/'+rows[0].id);
         $('#toolbar').hide();
     }
     //批量删除
@@ -65,7 +78,7 @@
                 ids.push(rows[i].cusId)
             }
             $.ajax({
-                url: "customer/batch",
+                url: "admin/delete",
                 type: "post",
                 data: {
                     ids: ids

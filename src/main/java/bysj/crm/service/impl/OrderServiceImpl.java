@@ -1,5 +1,6 @@
 package bysj.crm.service.impl;
 
+import bysj.crm.dao.CustomerMapper;
 import bysj.crm.dao.OrderMapper;
 import bysj.crm.domain.Customer;
 import bysj.crm.domain.Order;
@@ -30,6 +31,10 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public int updateOrder(Order order) {
+        Customer customer = customerService.getCustomerByName(order.getCustomerName());
+        if(customer==null){
+            return  -1;
+        }
         return orderMapper.updateOrder(order);
     }
 
@@ -42,7 +47,7 @@ public class OrderServiceImpl implements OrderService{
     public Result<Order> getAllOrders(Page page, Order order) {
         Result<Order> result = new Result<>();
         try{
-            long count = orderMapper.getOrderCount();
+            long count = orderMapper.getOrderCount(order);
             result.setTotal(count);
             List<Order> orders = orderMapper.getOrderPage(page,order);
             result.setRows(orders);
@@ -50,5 +55,10 @@ public class OrderServiceImpl implements OrderService{
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public Order getOrderById(long id) {
+        return orderMapper.getOrderById(id);
     }
 }

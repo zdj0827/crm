@@ -13,18 +13,18 @@
     </resultMap>
 
     <sql id="allColumns">
-        id,name,phone,address,company_name,company_tel,company_address
+        id,name,phone,address,company_name,company_tel,company_address,level
     </sql>
 
     <insert id="addPotentialCustomer">
-        INSERT INTO potential_customers (name,phone,address,company_name,company_tel,company_address)
+        INSERT INTO potential_customers (name,phone,address,company_name,company_tel,company_address,level)
         VALUES (#{pCustomer.name},#{pCustomer.phone},#{pCustomer.address},
-        #{pCustomer.companyName},#{pCustomer.companyTel},#{pCustomer.companyAddress})
+        #{pCustomer.companyName},#{pCustomer.companyTel},#{pCustomer.companyAddress},#{pCustomer.level})
     </insert>
 
     <update id="updatePotentialCustomer">
         UPDATE potential_customers SET name=#{pCustomer.name},phone=#{pCustomer.phone},address=#{pCustomer.address},
-        company_name=#{pCustomer.companyName},company_tel=#{pCustomer.companyTel},company_address=#{pCustomer.companyAddress}
+        company_name=#{pCustomer.companyName},company_tel=#{pCustomer.companyTel},company_address=#{pCustomer.companyAddress},level=#{pCustomer.level}
         WHERE id=#{pCustomer.id}
     </update>
 
@@ -33,14 +33,24 @@
     </delete>
 
     <select id="getPotentialCustomerCount" resultType="java.lang.Long">
-        select count(id) FROM potential_customers;
+        select count(id) FROM potential_customers
+        <if test="pCustomer !=null and pCustomer.name != null and pCustomer.name !=''">
+        <where>
+            name LIKE concat('%','${pCustomer.name}','%')
+        </where>
+        </if>
+        <if test="pCustomer !=null and pCustomer.phone != null and pCustomer.phone !=''">
+            <where>
+                phone = #{pCustomer.phone}
+            </where>
+        </if>
     </select>
 
     <select id="getPotentialCustomerPage" resultMap="potentialCustomer">
         select <include refid="allColumns"/> FROM potential_customers
         <if test="pCustomer !=null and pCustomer.name != null and pCustomer.name !=''">
             <where>
-                name LIKE #{pCustomer.name}
+                name LIKE concat('%','${pCustomer.name}','%')
             </where>
         </if>
         <if test="pCustomer !=null and pCustomer.phone != null and pCustomer.phone !=''">
@@ -49,5 +59,9 @@
             </where>
         </if>
         limit #{page.offset},#{page.pageSize}
+    </select>
+
+    <select id="getPotentialCustomerById" resultMap="potentialCustomer">
+        SELECT <include refid="allColumns"/> FROM potential_customers WHERE id=#{id}
     </select>
 </mapper>

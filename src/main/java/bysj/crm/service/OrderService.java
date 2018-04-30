@@ -12,4 +12,6 @@ public interface OrderService {
     int deleteOrder(int id);
 
     Result<Order> getAllOrders(Page page, Order order);
+
+    Order getOrderById(long id);
 }

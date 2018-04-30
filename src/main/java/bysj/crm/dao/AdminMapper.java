@@ -18,7 +18,7 @@ public interface AdminMapper {
 
     Admin getAdminByName(@Param("name")String name);
 
-    long getAdminCount();
+    long getAdminCount(@Param("admin")Admin admin);
 
     List<Admin> getAdminPage(@Param("page") Page page, @Param("admin") Admin admin);
 }

@@ -30,7 +30,7 @@
     <update id="updateCustomer">
         UPDATE customers SET name=#{customer.name},phone=#{customer.phone},address=#{customer.address},
         company_name=#{customer.companyName},company_tel=#{customer.companyTel},company_address=#{customer.companyAddress},
-        linked_name=#{customer.linkedName},linked_phone=,#{customer.linkedPhone}linked_address=#{customer.linkedAddress},
+        linked_name=#{customer.linkedName},linked_phone=#{customer.linkedPhone},linked_address=#{customer.linkedAddress},
         level=#{customer.level}
         WHERE id=#{customer.id}
     </update>
@@ -45,13 +45,23 @@
 
     <select id="getCustomerCount" resultType="java.lang.Long">
         SELECT count(id) FROM customers
+        <if test="customer!=null and customer.name !=null and customer.name!=''">
+            <where>
+                name like concat('%','${customer.name}','%')
+            </where>
+        </if>
+        <if test="customer != null and customer.phone !=null and customer.phone != ''">
+            <where>
+                phone =  #{customer.phone}
+            </where>
+        </if>
     </select>
 
     <select id="getCustomerPage" resultMap="customer">
         SELECT <include refid="allColumns"/> FROM customers
         <if test="customer != null and customer.name !=null and customer.name != ''">
             <where>
-                name LIKE #{customer.name}
+                name LIKE concat('%','${customer.name}','%')
             </where>
         </if>
         <if test="customer != null and customer.phone !=null and customer.phone != ''">
@@ -60,5 +70,9 @@
             </where>
         </if>
         limit #{page.offset},#{page.pageSize}
+    </select>
+
+    <select id="getCustomerById" resultMap="customer">
+        SELECT <include refid="allColumns"/> FROM customers WHERE id=#{id}
     </select>
 </mapper>

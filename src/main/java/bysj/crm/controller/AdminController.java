@@ -36,6 +36,12 @@ public class AdminController {
         }
         return result;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "delete",method = RequestMethod.GET)
+    public Map<String,Object> deleteAdmin(int[] ids){
+        return null;
+    }
     /*修改管理员信息*/
     @ResponseBody
     @RequestMapping(value = "/update",method = RequestMethod.POST)
@@ -43,10 +49,10 @@ public class AdminController {
         Map<String,Object> result = new HashMap<>();
         int isSuccess = adminService.update(admin);
         if(isSuccess==1){
-            result.put("msg","update Admin Success");
+            result.put("result",true);
             result.put("url","");
         }else{
-            result.put("msg","update Admin Failed");
+            result.put("result",false);
         }
         return result;
     }
@@ -94,4 +100,5 @@ public class AdminController {
         Result<Admin> result = adminService.getAllAdmins(page,admin);
         return result;
     }
+
 }

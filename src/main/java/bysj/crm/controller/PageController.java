@@ -1,6 +1,10 @@
 package bysj.crm.controller;
 
+import bysj.crm.domain.*;
+import bysj.crm.service.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +16,16 @@ import java.util.Map;
 
 @Controller
 public class PageController {
+    @Autowired
+    private AdminService adminService;
+    @Autowired
+    private EmployeeService employeeService;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private PotentialCustomerService potentialCustomerService;
     /*跳转到admin首页*/
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String index(HttpServletRequest request, HttpServletResponse response){
@@ -84,5 +98,50 @@ public class PageController {
     @RequestMapping(value = "orderList",method = RequestMethod.GET)
     public String toOrderList(){
         return "orderList";
+    }
+
+    @RequestMapping(value = "updateAdminPage/{id}",method = RequestMethod.GET)
+    public String toUpdateAdminPage(@PathVariable("id")long id,HttpServletRequest request,HttpServletResponse response){
+        Admin admin = adminService.getAdminById(id);
+        if(admin!=null){
+            request.getSession().setAttribute("admin",admin);
+        }
+        return "updateAdmin";
+    }
+
+    @RequestMapping(value = "updateEmployeePage/{id}",method = RequestMethod.GET)
+    public String toUpdateEmployeePage(@PathVariable("id")long id,HttpServletRequest request,HttpServletResponse response){
+        Employee employee = employeeService.getEmployeeById(id);
+        if(employee!=null){
+            request.getSession().setAttribute("employee",employee);
+        }
+        return "updateEmployee";
+    }
+
+    @RequestMapping(value = "updateCustomerPage/{id}",method = RequestMethod.GET)
+    public String toUpdateCustomerPage(@PathVariable("id")long id,HttpServletRequest request,HttpServletResponse response){
+        Customer customer = customerService.getCustomerBId(id);
+        if(customer!=null){
+            request.getSession().setAttribute("customer",customer);
+        }
+        return "updateCustomer";
+    }
+
+    @RequestMapping(value = "updateOrderPage/{id}",method = RequestMethod.GET)
+    public String toUpdateOrderPage(@PathVariable("id")long id,HttpServletRequest request,HttpServletResponse response){
+        Order order = orderService.getOrderById(id);
+        if(order!=null){
+            request.getSession().setAttribute("order",order);
+        }
+        return "updateOrder";
+    }
+
+    @RequestMapping(value = "updatePotentialCustomerPage/{id}",method = RequestMethod.GET)
+    public String toUpdatePotentialCustomerPagePage(@PathVariable("id")long id,HttpServletRequest request,HttpServletResponse response){
+        PotentialCustomer potentialCustomer = potentialCustomerService.getPotentialCustomerById(id);
+        if(potentialCustomer!=null){
+            request.getSession().setAttribute("pCustomer",potentialCustomer);
+        }
+        return "updatePotentialCustomer";
     }
 }
