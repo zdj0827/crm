@@ -51,10 +51,10 @@ public class EmployeeController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "delete",method = RequestMethod.GET)
-    public Map<String,Object> deleteEmployee(int id){
+    @RequestMapping(value = "delete",method = RequestMethod.POST)
+    public Map<String,Object> deleteEmployee(int[] ids){
         Map<String,Object> result = new HashMap<>();
-        int i = employeeService.deleteEmployee(id);
+        int i = employeeService.deleteEmployee(ids);
         if(i!=0){
             result.put("result",true);
             result.put("url","");

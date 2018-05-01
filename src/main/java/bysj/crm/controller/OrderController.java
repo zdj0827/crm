@@ -57,9 +57,9 @@ public class OrderController {
 
     @ResponseBody
     @RequestMapping(value = "delete",method = RequestMethod.POST)
-    public Map<String,Object> addOrder(int id){
+    public Map<String,Object> deleteOrder(int[] ids){
         Map<String,Object> result = new HashMap<>();
-        int i = orderService.deleteOrder(id);
+        int i = orderService.deleteOrder(ids);
         if(i!=0){
             result.put("result",true);
             result.put("url","");

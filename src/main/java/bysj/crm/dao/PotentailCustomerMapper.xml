@@ -29,7 +29,10 @@
     </update>
 
     <delete id="deletePotentialCustomer">
-        DELETE FROM potential_customers WHERE id=#{id}
+        DELETE FROM potential_customers WHERE id IN
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </delete>
 
     <select id="getPotentialCustomerCount" resultType="java.lang.Long">

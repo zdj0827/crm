@@ -12,4 +12,6 @@ public interface UserService {
     User getByJobNumber(long jobNumber);
 
     boolean isMatch(String password, User userFind);
+
+    User getUserById(int id);
 }

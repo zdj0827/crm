@@ -9,7 +9,7 @@ public interface PotentialCustomerService {
 
     int updatePotentialCustomer(PotentialCustomer potentialCustomer);
 
-    int deletePotentialCustomer(int id);
+    int deletePotentialCustomer(int[] ids);
 
     Result<PotentialCustomer> getAllPotentialCustomers(Page page, PotentialCustomer potentialCustomer);
 

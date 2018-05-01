@@ -13,11 +13,13 @@ public interface EmployeeMapper {
 
     int updateEmployee(@Param("employee")Employee employee);
 
-    int deleteEmployee(@Param("id")int id);
+    int deleteEmployee(@Param("ids")int[] ids);
 
     long getEmployeesCount(@Param("employee") Employee employee);
 
     List<Employee> getEmployeePage(@Param("page") Page page, @Param("employee") Employee employee);
 
     Employee getEmployeeById(@Param("id")long id);
+
+    Employee getEmployeeByJobNumber(@Param("jobNumber") long jobNumber);
 }

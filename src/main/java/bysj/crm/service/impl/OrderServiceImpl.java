@@ -39,8 +39,8 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public int deleteOrder(int id) {
-        return orderMapper.deleteOrder(id);
+    public int deleteOrder(int[] ids) {
+        return orderMapper.deleteOrder(ids);
     }
 
     @Override

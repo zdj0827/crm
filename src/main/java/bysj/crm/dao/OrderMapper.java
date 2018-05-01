@@ -13,7 +13,7 @@ public interface OrderMapper {
 
     int updateOrder(@Param("order")Order order);
 
-    int deleteOrder(@Param("id")int id);
+    int deleteOrder(@Param("ids")int[] ids);
 
     long getOrderCount(@Param("order") Order order);
 

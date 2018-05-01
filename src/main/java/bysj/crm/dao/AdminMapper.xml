@@ -45,4 +45,11 @@
         </if>
         limit #{page.offset},#{page.pageSize}
     </select>
+
+    <delete id="deleteAdmin">
+        DELETE FROM admins WHERE id IN
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

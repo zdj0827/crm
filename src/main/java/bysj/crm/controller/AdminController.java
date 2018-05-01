@@ -38,9 +38,16 @@ public class AdminController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "delete",method = RequestMethod.GET)
+    @RequestMapping(value = "delete",method = RequestMethod.POST)
     public Map<String,Object> deleteAdmin(int[] ids){
-        return null;
+        Map<String,Object> result = new HashMap<>();
+        int i = adminService.deleteAdmin(ids);
+        if(i!=0){
+            result.put("result",true);
+        }else{
+            result.put("result",false);
+        }
+        return result;
     }
     /*修改管理员信息*/
     @ResponseBody
@@ -63,10 +70,10 @@ public class AdminController {
         Map<String,Object> result = new HashMap<>();
         Admin admin = adminService.getAdminById(id);
         if(admin!=null){
-            result.put("msg","success");
+            result.put("result",true);
             result.put("url","");
         }else{
-            result.put("msg","no such admin");
+            result.put("result",false);
             result.put("url","");
         }
         return result;

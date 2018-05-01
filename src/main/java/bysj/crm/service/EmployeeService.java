@@ -12,9 +12,11 @@ public interface EmployeeService {
 
     int updateEmployee(Employee employee);
 
-    int deleteEmployee(int id);
+    int deleteEmployee(int[] ids);
 
     Result<Employee> getAllEmployees(Page page, Employee employee);
 
     Employee getEmployeeById(long id);
+
+    Employee getEmployeeByJobNumber(long jobNumber);
 }

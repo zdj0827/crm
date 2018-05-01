@@ -66,8 +66,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public int deleteEmployee(int id){
-        return employeeMapper.deleteEmployee(id);
+    public int deleteEmployee(int[] ids){
+        return employeeMapper.deleteEmployee(ids);
     }
 
     @Override
@@ -87,5 +87,10 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee getEmployeeById(long id) {
         return employeeMapper.getEmployeeById(id);
+    }
+
+    @Override
+    public Employee getEmployeeByJobNumber(long jobNumber) {
+        return employeeMapper.getEmployeeByJobNumber(jobNumber);
     }
 }

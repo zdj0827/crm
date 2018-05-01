@@ -9,7 +9,7 @@ public interface OrderService {
 
     int updateOrder(Order order);
 
-    int deleteOrder(int id);
+    int deleteOrder(int[] ids);
 
     Result<Order> getAllOrders(Page page, Order order);
 

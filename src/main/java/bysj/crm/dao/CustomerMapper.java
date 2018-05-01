@@ -13,7 +13,7 @@ public interface CustomerMapper {
 
     int updateCustomer(@Param("customer") Customer customer);
 
-    int deleteCustomer(@Param("id") int id);
+    int deleteCustomer(@Param("ids") int[] ids);
 
     Customer getCustomerByName(@Param("name") String name);
 
@@ -21,5 +21,5 @@ public interface CustomerMapper {
 
     List<Customer> getCustomerPage(@Param("page") Page page, @Param("customer") Customer customer);
 
-    Customer getCustomerById(@Param(("id")) long id);
+    Customer getCustomerById(@Param("id") long id);
 }

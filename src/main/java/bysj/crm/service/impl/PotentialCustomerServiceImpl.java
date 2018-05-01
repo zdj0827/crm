@@ -25,8 +25,8 @@ public class PotentialCustomerServiceImpl implements PotentialCustomerService{
     }
 
     @Override
-    public int deletePotentialCustomer(int id) {
-        return potentialCustomerMapper.deletePotentialCustomer(id);
+    public int deletePotentialCustomer(int[] ids) {
+        return potentialCustomerMapper.deletePotentialCustomer(ids);
     }
 
     @Override

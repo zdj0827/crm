@@ -40,7 +40,10 @@
     </update>
 
     <delete id="deleteEmployee">
-        DELETE FROM  employees WHERE id=#{id}
+        DELETE FROM  employees WHERE id IN
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </delete>
 
     <select id="getEmployeesCount" resultType="java.lang.Long">
@@ -74,5 +77,9 @@
 
     <select id="getEmployeeById" resultMap="employee">
         SELECT <include refid="allColumns"/> FROM employees WHERE id=#{id}
+    </select>
+
+    <select id="getEmployeeByJobNumber" resultMap="employee">
+        SELECT <include refid="allColumns"/> FROM employees WHERE job_number = #{jobNumber}
     </select>
 </mapper>

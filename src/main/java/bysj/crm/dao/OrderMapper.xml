@@ -28,7 +28,10 @@
     </update>
 
     <delete id="deleteOrder">
-        DELETE FROM orders WHERE id=#{id}
+        DELETE FROM orders WHERE id IN
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </delete>
 
     <select id="getOrderCount" resultType="java.lang.Long">

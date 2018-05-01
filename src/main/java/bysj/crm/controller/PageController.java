@@ -26,6 +26,8 @@ public class PageController {
     private OrderService orderService;
     @Autowired
     private PotentialCustomerService potentialCustomerService;
+    @Autowired
+    private UserService userService;
     /*跳转到admin首页*/
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String index(HttpServletRequest request, HttpServletResponse response){
@@ -143,5 +145,14 @@ public class PageController {
             request.getSession().setAttribute("pCustomer",potentialCustomer);
         }
         return "updatePotentialCustomer";
+    }
+
+    @RequestMapping(value = "updateUserPage/{id}",method = RequestMethod.GET)
+    public String toUpdateUserPage(@PathVariable("id") int id,HttpServletRequest request,HttpServletResponse response){
+        User user = userService.getUserById(id);
+        if(user!=null){
+            request.getSession().setAttribute("user",user);
+        }
+        return "updateUser";
     }
 }

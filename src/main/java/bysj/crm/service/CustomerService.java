@@ -9,7 +9,7 @@ public interface CustomerService {
 
     int updateCustomer( Customer customer);
 
-    int deleteCustomer( int id);
+    int deleteCustomer( int[] id);
 
     Customer getCustomerByName(String name);
 

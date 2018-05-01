@@ -21,4 +21,6 @@ public interface AdminMapper {
     long getAdminCount(@Param("admin")Admin admin);
 
     List<Admin> getAdminPage(@Param("page") Page page, @Param("admin") Admin admin);
+
+    int deleteAdmin(@Param("ids") int[] ids);
 }

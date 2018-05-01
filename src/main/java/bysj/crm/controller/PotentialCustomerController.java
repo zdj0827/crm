@@ -36,9 +36,9 @@ public class PotentialCustomerController {
 
     @ResponseBody
     @RequestMapping(value = "delete",method = RequestMethod.POST)
-    public Map<String ,Object> deletePotentialCustomer(int id){
+    public Map<String ,Object> deletePotentialCustomer(int[] ids){
         Map<String,Object> result = new HashMap<>();
-        int i = potentialCustomerService.deletePotentialCustomer(id);
+        int i = potentialCustomerService.deletePotentialCustomer(ids);
         if(i!=0){
             result.put("result",true);
             result.put("url","");

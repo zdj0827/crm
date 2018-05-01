@@ -13,7 +13,7 @@ public interface PotentialCustomerMapper {
 
     int updatePotentialCustomer(@Param("pCustomer")PotentialCustomer potentialCustomer);
 
-    int deletePotentialCustomer(@Param("id")int id);
+    int deletePotentialCustomer(@Param("ids")int[] ids);
 
     long getPotentialCustomerCount(@Param("pCustomer") PotentialCustomer potentialCustomer);
 

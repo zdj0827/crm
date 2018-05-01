@@ -36,10 +36,10 @@ public class CustomerController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "delete",method = RequestMethod.GET)
-    public Map<String,Object> deleteCustomer(int id){
+    @RequestMapping(value = "delete",method = RequestMethod.POST)
+    public Map<String,Object> deleteCustomer(int[] ids){
         Map<String,Object> result = new HashMap<>();
-        int i = customerService.deleteCustomer(id);
+        int i = customerService.deleteCustomer(ids);
         if (i != 0) {
             result.put("result",true);
             result.put("url","");

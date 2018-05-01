@@ -17,4 +17,6 @@ public interface AdminService {
     boolean isMatch(String password, Admin admin);
 
     Result<Admin> getAllAdmins(Page page, Admin admin);
+
+    int deleteAdmin(int[] ids);
 }

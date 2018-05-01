@@ -73,7 +73,7 @@
 
             var ids=[];
             for(var i=0;i<rows.length;i++){
-                ids.push(rows[i].cusId)
+                ids.push(rows[i].id)
             }
             $.ajax({
                 url: "employee/delete",
@@ -81,11 +81,15 @@
                 data: {
                     ids: ids
                 },
+                traditional: true,
                 success: function (data) {
-                    //alert(data.msg);
-                    //重新加载记录
-                    //重新加载数据
-                    $("#customerListDg").bootstrapTable('refresh', {url: 'employee/allEmployees'});
+                    if(data.result){
+                        alert("删除成功！");
+                        $("#customerListDg").bootstrapTable('refresh', {url: 'employee/allEmployees'});
+                    }else {
+                        alert("删除失败！");
+                        return;
+                    }
                 }
             });
         }

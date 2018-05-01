@@ -241,7 +241,7 @@
                     <form class="form-search">
                         欢迎：${sessionScope.user.name},&nbsp;
                         <a id="logout" onclick="logout()">退出</a>&nbsp;
-                        <a id="moreInfo" onclick="getInfo(${sessionScope.user.id},${sessionScope.user.level})">个人资料</a>&nbsp;&nbsp;
+                        <a id="moreInfo" onclick="moreInfo(${sessionScope.user.id},${sessionScope.user.level})">个人资料</a>&nbsp;&nbsp;
 						<%--<span class="input-icon">
 							<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
 							<i class="icon-search nav-search-icon"></i>
@@ -506,9 +506,9 @@
 
     function moreInfo(id,level) {
         if(level==0){
-            $('#pageload').load('user/getById?id='+id);
+            $("#pageload").load("updateUserPage/"+id);
         }else{
-            $('#pageload').load('admin/getById?id='+id);
+            $('#pageload').load('updateAdminPage/'+id);
         }
     }
 </script>

@@ -25,8 +25,8 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public int deleteCustomer(int id) {
-        return deleteCustomer(id);
+    public int deleteCustomer(int[] ids) {
+        return customerMapper.deleteCustomer(ids);
     }
 
     @Override

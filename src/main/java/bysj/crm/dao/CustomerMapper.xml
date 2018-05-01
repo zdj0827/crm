@@ -36,7 +36,10 @@
     </update>
 
     <delete id="deleteCustomer">
-        DELETE FROM customers WHERE id=#{id}
+        DELETE FROM customers WHERE id IN
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
     </delete>
 
     <select id="getCustomerByName" resultMap="customer">
