@@ -13,7 +13,7 @@
 <body>
 <div class="panel panel-primary" id="panel1">
     <div class="panel-heading" style="height: 75px">
-        <h1 class="panel-title" style="color: white"><b>修改管理员信息</b></h1>
+        <h1 class="panel-title" style="color: white"><b>修改用户信息</b></h1>
     </div>
     <div class="panel-body">
         <div>
