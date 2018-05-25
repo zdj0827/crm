@@ -41,7 +41,7 @@
 <script>
     //新增
     function addVideoShow() {
-        $("#pageload").load('addCustomerPage');
+        $("#pageload").load('addAdminPage');
         $('#toolbar').hide();
     }
     //修改

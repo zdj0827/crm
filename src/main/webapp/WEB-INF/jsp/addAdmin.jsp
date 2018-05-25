@@ -89,7 +89,7 @@
         }
 
         if(password2!=password1){
-            $('#error3').html("两次密码不匹配，请再次输入");
+            $('#error3').html("两次密码不匹配");
             return;
         }
 
@@ -106,7 +106,8 @@
             success:function (data) {
                 if(data.result){
                     alert("添加管理员成功!");
-                    self.location.href=""
+                    //self.location.href="/bysj/adminList"
+                    $('#pageload').load('adminList');
                 }else{
                     alert("添加管理员失败!");
                 }
@@ -119,6 +120,10 @@
         var password1 = $('#password1').val("");
         var password2 = $('#password2').val("");
         var level = $('#level').val(0);
+        $('#error1').html("");
+        $('#error2').html("");
+        $('#error3').html("");
+        $('#error4').html("");
     }
 </script>
 </html>

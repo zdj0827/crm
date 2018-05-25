@@ -197,7 +197,8 @@
             success:function(data){
                 if(data.result){
                     alert("添加员工成功，员工工号为："+data.jobNumber+",初始密码为123456");
-                    self.location.href = "/bysj";
+                    //self.location.href = "/bysj/employeeList";
+                    $('#pageload').load('employeeList');
                 }else{
                     alert("添加员工失败");
                     return;

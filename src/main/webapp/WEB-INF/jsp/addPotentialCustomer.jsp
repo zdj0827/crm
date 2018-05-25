@@ -142,7 +142,8 @@
             success:function(data){
                 if(data.result){
                     alert("添加客户成功");
-                    self.location.href = "/bysj";
+                    //self.location.href = "/bysj/potentialCustomerList";
+                    $('#pageload').load('potentialCustomerList');
                 }else{
                     alert("添加客户失败");
                     return;

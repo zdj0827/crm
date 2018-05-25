@@ -118,7 +118,8 @@
             success:function(data){
                 if(data.result){
                     alert("添加订单成功");
-                    self.location.href = "/bysj";
+                    //self.location.href = "/bysj/orderList";
+                    $('#pageload').load('orderList');
                 }else{
                     if(data.code==-1){
                         alert("客户不存在");

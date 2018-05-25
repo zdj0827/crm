@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping("admin")
@@ -29,10 +30,10 @@ public class AdminController {
         Map<String,Object> result = new HashMap<>();
         int isSuccess = adminService.addAdmin(admin);
         if(isSuccess==1){
-            result.put("msg","Add Admin Success");
+            result.put("result",true);
             result.put("url","");
         }else{
-            result.put("msg","Add Admin Failed");
+            result.put("result",false);
         }
         return result;
     }
